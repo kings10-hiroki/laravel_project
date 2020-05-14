@@ -13,15 +13,19 @@
 
 Route::get('/', function () {
     return view('index');
-});
+})->name('home');
 
 Route::get('/contact', function () {
     return view('contact');
-});
+})->name('contact');
 
 Route::get('/about', function () {
     return view('about');
-});
+})->name('about');
+
+Route::post('/contact/submit', function () {
+    return dd(Request::all());
+})->name('contact-form-submit');
 
 Auth::routes();
 
