@@ -7,6 +7,7 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Basic website</title>
     <link rel="stylesheet" href="/css/app.css">
+    <script src="/js/app.js"></script>
 </head>
 
 <body>

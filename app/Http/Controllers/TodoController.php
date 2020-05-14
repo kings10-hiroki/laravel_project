@@ -14,8 +14,8 @@ class TodoController extends Controller
      */
     public function index()
     {
-        $todos = Todo::get();
-        // dd($todos);
+        $todos = Todo::orderBy('created_at', 'desc')->get();
+
         return view('todo', ['todos' => $todos]);
     }
 
@@ -48,7 +48,9 @@ class TodoController extends Controller
      */
     public function show($id)
     {
-        //
+        $todo = Todo::find($id);
+
+        return view('show')->with('todo', $todo);
     }
 
     /**

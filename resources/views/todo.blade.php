@@ -8,14 +8,17 @@
 @if (count($todos) > 0)
 @foreach ($todos as $todo)
 <div class="card">
-    <div class="card-header flex">
-        <i class="far fa-check-square icon-square"></i>
-        <h2>{{ $todo->title }}</h2>
-    </div>
-    <div class="card-body">
-        <h3>{{ $todo->content }}</h3>
-        <span class="badge badge-danger">{{ $todo->due }}</span>
-    </div>
+    <ul class="list-group list-group-flush">
+        <li class="list-group-item flex">
+            <div>
+                <i class="far fa-check-square icon-square"></i>
+            </div>
+            <div>
+                <h2><a href="todo/{{ $todo->id }}">{{ $todo->title }}</a></h2>
+                <span class="badge badge-danger">{{ $todo->due }}</span>
+            </div>
+        </li>
+    </ul>
 </div>
 @endforeach
 @endif

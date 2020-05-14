@@ -20,6 +20,17 @@
                 <a class="nav-link {{ Request::is('contact/messages') ? 'active' : '' }}"
                     href="{{ route('get-messages') }}">See messages</a>
             </li>
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle {{ Request::is('contact/messages') ? 'active' : '' }}" href="#"
+                    id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    Todo
+                </a>
+                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                    <a class="dropdown-item" href="/todo">List</a>
+                    <div class="dropdown-divider"></div>
+                    <a class="dropdown-item" href="/todo/create">Create</a>
+                </div>
+            </li>
         </ul>
     </div>
 </nav>
