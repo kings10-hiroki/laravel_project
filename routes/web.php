@@ -21,6 +21,8 @@ Route::get('/contact/messages', 'ContactController@getMessages')->name('get-mess
 
 Route::post('/contact/submit', 'ContactController@submit')->name('contact-form-submit');
 
+Route::resource('todos', 'TodoController');
+
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
