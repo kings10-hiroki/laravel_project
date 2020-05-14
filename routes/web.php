@@ -11,17 +11,13 @@
 |
 */
 
-Route::get('/', function () {
-    return view('index');
-})->name('index');
+Route::get('/', 'PagesController@getHome')->name('index');
 
-Route::get('/contact', function () {
-    return view('contact');
-})->name('contact');
+Route::get('/contact', 'PagesController@getContact')->name('contact');
 
-Route::get('/about', function () {
-    return view('about');
-})->name('about');
+Route::get('/about', 'PagesController@getAbout')->name('about');
+
+Route::get('/contact/messages', 'ContactController@getMessages')->name('get-messages');
 
 Route::post('/contact/submit', 'ContactController@submit')->name('contact-form-submit');
 

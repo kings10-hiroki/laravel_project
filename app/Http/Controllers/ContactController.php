@@ -22,4 +22,11 @@ class ContactController extends Controller
             'お問い合わせいただきありがとうございます。メッセージを送信しました！'
         );
     }
+
+    public function getMessages()
+    {
+        $messages = Message::all();
+
+        return view('messages', ['messages' => $messages]);
+    }
 }
