@@ -1,5 +1,7 @@
 @extends('layouts.html')
 
+@include('includes.messages')
+
 @section('content')
 <h1>Home</h1>
 <p>Of on affixed civilly moments promise explain fertile in. Assurance advantage belonging happiness departure so of.
