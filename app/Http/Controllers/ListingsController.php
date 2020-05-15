@@ -10,6 +10,16 @@ use App\Http\Requests\ListRequest;
 class ListingsController extends Controller
 {
     /**
+     * Create a new controller instance.
+     *
+     * @return void
+     */
+    public function __construct()
+    {
+        $this->middleware('auth', ['except' => ['index']]);
+    }
+
+    /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
@@ -18,7 +28,7 @@ class ListingsController extends Controller
     {
         $listings = Listing::all();
 
-        return view('listing');
+        return view('home')->with('listings', $listings);
     }
 
     /**

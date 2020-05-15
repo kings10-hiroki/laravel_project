@@ -20,9 +20,17 @@
                 <a class="nav-link {{ Request::is('contact/messages') ? 'active' : '' }}"
                     href="{{ route('get-messages') }}">See messages</a>
             </li>
+            @auth
             <li class="nav-item">
                 <a class="nav-link {{ Request::is('home') ? 'active' : '' }}" href="{{ route('home') }}">Listing</a>
             </li>
+            @endauth
+            @guest
+            <li class="nav-item">
+                <a class="nav-link {{ Request::is('home') ? 'active' : '' }}"
+                    href="{{ route('listings.index') }}">Listing</a>
+            </li>
+            @endguest
             <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle {{ Request::is('todo') ? 'active' : '' }}" href="#"
                     id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
