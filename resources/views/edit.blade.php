@@ -23,8 +23,12 @@
         <input type="text" class="form-control" id="due" name="due" placeholder="Enter due" value="{{ $todo->due }}">
     </div>
 
-    <button type="submit" class="btn btn-primary">Update</button>
+    <button type="submit" class="btn btn-primary">更新</button>
 </form>
+
+<hr>
+
+<a href="/todo/{{ $todo->id }}" class="btn btn-outline-dark">戻る</a>
 
 @endsection
 

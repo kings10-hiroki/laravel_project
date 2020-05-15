@@ -22,8 +22,12 @@
         <input type="text" class="form-control" id="due" name="due" placeholder="Enter due" value="{{ old('due') }}">
     </div>
 
-    <button type="submit" class="btn btn-primary">Submit</button>
+    <button type="submit" class="btn btn-primary">登録</button>
 </form>
+
+<hr>
+
+<a href="/todo" class="btn btn-outline-dark">戻る</a>
 
 @endsection
 
