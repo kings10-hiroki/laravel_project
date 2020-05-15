@@ -1,9 +1,9 @@
 @extends('layouts.html')
 
-@include('includes.messages')
-
 @section('content')
 <h1>Todo</h1>
+
+@include('includes.messages')
 
 @if (count($todos) > 0)
 @foreach ($todos as $todo)
