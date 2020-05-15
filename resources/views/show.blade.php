@@ -27,12 +27,12 @@
                 Todoを削除するとTodoを再び開くことはできなくなります。この操作を元に戻すことはできません。
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">閉じる</button>
                 <form action="/todo/{{ $todo->id }}" method="POST" style="display: inline;">
                     @csrf
                     @method('DELETE')
                     <button type="submit" class="btn btn-danger">削除</button>
                 </form>
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">閉じる</button>
             </div>
         </div>
     </div>

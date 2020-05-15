@@ -23,6 +23,8 @@ Route::post('/contact/submit', 'ContactController@submit')->name('contact-form-s
 
 Route::resource('todo', 'TodoController');
 
+Route::resource('listings', 'ListingsController');
+
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
