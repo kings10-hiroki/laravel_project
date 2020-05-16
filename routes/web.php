@@ -29,6 +29,10 @@ Route::get('/photoshow', 'AlbumsController@index')->name('photoshow-index');
 Route::get('/photoshow/albums', 'AlbumsController@index');
 Route::get('/photoshow/albums/create', 'AlbumsController@create')->name('album-create');
 Route::post('/photoshow/albums/store', 'AlbumsController@store')->name('album-store');
+Route::get('/photoshow/albums/{id}', 'AlbumsController@show')->name('album-show');
+
+Route::get('/photoshow/photos/create/{albumId}', 'PhotosController@create')->name('photo-create');
+Route::post('/photoshow/photos/store', 'PhotosController@store')->name('photo-store');
 
 Auth::routes();
 

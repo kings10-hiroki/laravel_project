@@ -12,16 +12,22 @@ class CreateAlbum
     private $extention;
     private $filenameToStore;
 
-    public function createFilenameToStore($request)
+    /**
+     * データベースに保存する「ファイル名 + _unixtime + 拡張子」のカラム名取得
+     *
+     * @param  $request->file('columnName') $columnName
+     * @return $filenameToStore
+     */
+    public function createFilenameToStore($columnName)
     {
         // ファイル名.拡張子
-        $filenameWithExtension = $request->file('cover-image')->getClientOriginalName();
+        $filenameWithExtension = $columnName->getClientOriginalName();
 
         // ファイル名
         $filename = pathinfo($filenameWithExtension, PATHINFO_FILENAME);
 
         // 拡張子
-        $extention = $request->file('cover-image')->getClientOriginalExtension();
+        $extention = $columnName->getClientOriginalExtension();
 
         // ファイル名 + _unixtime + 拡張子
         // ex) 1_1589594334.jpg
@@ -30,11 +36,21 @@ class CreateAlbum
         return $filenameToStore;
     }
 
-    public function storeData($request, $model, $filename)
+    public function storeAlbumData($request, $model, $filename)
     {
         $model->name = $request->input('name');
         $model->description = $request->input('description');
         $model->cover_image = $filename;
+        $model->save();
+    }
+
+    public function storePhotoData($request, $model, $filename)
+    {
+        $model->title = $request->input('title');
+        $model->description = $request->input('description');
+        $model->photo = $filename;
+        $model->size = $request->file('photo')->getSize();
+        $model->album_id = $request->input('album-id');
         $model->save();
     }
 }

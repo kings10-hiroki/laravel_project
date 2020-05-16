@@ -11,7 +11,8 @@
                 <p class="card-text">{{ $album->description }}</p>
                 <div class="d-flex justify-content-between align-items-center">
                     <div class="btn-group">
-                        <button type="button" class="btn btn-sm btn-outline-secondary">View</button>
+                        <a href="{{ route('album-show', $album->id) }}"
+                            class="btn btn-sm btn-outline-secondary">View</a>
                     </div>
                     <small class="text-muted">{{ $album->name }}</small>
                 </div>
