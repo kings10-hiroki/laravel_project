@@ -3,7 +3,7 @@
 @section('content')
 <div class="container">
     <div class="row">
-        <div class="col-md-6">
+        <div class="col-md-6 mx-auto">
             <h2>Item</h2>
             @if (count($items) > 0)
             <div class="list-group">

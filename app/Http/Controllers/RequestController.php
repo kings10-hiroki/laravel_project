@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use GuzzleHttp\Client;
+use GuzzleHttp\Exception\RequestException;
 
 class RequestController extends Controller
 {
@@ -30,7 +31,7 @@ class RequestController extends Controller
      */
     public function create()
     {
-        //
+        return view('request.create');
     }
 
     /**
@@ -41,7 +42,26 @@ class RequestController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $this->validate($request, [
+            'text' => 'required',
+            'body' => 'required'
+        ]);
+
+        $client = new Client();
+
+        try {
+            $response = $client->post('http://192.168.99.100/api/items?text=' . $request->input('text') . '&body=' . $request->input('body'));
+        } catch (RequestException $e) {
+            if ($e->hasResponse()) {
+                $msg = $e->getResponse();
+            } else {
+                $msg = 'アイテムの登録に失敗しました';
+            }
+
+            return redirect()->to('/request')->with('error', $msg);
+        }
+
+        return redirect()->to('/request')->with('success', 'アイテムの登録に成功しました');
     }
 
     /**
