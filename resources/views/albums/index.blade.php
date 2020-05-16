@@ -1,26 +1,26 @@
-<!DOCTYPE html>
-<html lang="ja">
+@extends('layouts.album')
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Basic website</title>
-    <link rel="stylesheet" href="/css/app.css">
-    <script src="/js/app.js"></script>
-</head>
-
-<body>
-    @include('includes.navbar')
-    <div class="container">
-        <div class="row">
-            <div class="col-md-8 col-lg-8">
-                <h1>Photoshow</h1>
-                @include('includes.messages')
-                @yield('content')
+@section('content')
+@if (count($albums) > 0)
+<div class="flex">
+    @foreach ($albums as $album)
+    <div class="col-md-4">
+        <div class="card mb-4 shadow-sm">
+            <img src="/storage/album_covers/{{ $album->cover_image }}" alt="{{ $album->cover_image }}" height="200px">
+            <div class="card-body">
+                <p class="card-text">{{ $album->description }}</p>
+                <div class="d-flex justify-content-between align-items-center">
+                    <div class="btn-group">
+                        <button type="button" class="btn btn-sm btn-outline-secondary">View</button>
+                    </div>
+                    <small class="text-muted">{{ $album->name }}</small>
+                </div>
             </div>
         </div>
     </div>
-</body>
-
-</html>
+    @endforeach
+</div>
+@else
+<h3>No albums yet.</h3>
+@endif
+@endsection
