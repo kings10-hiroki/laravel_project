@@ -34,6 +34,7 @@ Route::get('/photoshow/albums/{id}', 'AlbumsController@show')->name('album-show'
 Route::get('/photoshow/photos/create/{albumId}', 'PhotosController@create')->name('photo-create');
 Route::post('/photoshow/photos/store', 'PhotosController@store')->name('photo-store');
 Route::get('/photoshow/photos/{id}', 'PhotosController@show')->name('photo-show');
+Route::delete('photos/{id}', 'PhotosController@destroy')->name('photo-delete');
 
 Auth::routes();
 

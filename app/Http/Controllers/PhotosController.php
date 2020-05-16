@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Photo;
 use App\Services\CreateAlbum;
+use Illuminate\Support\Facades\Storage;
 
 class PhotosController extends Controller
 {
@@ -32,5 +33,23 @@ class PhotosController extends Controller
         $createAlbum->storePhotoData($request, $photo, $filenameToStore);
 
         return redirect('/photoshow/albums/' . $request->input('album-id'))->with('success', '画像をアップロードしました');
+    }
+
+    public function show($id)
+    {
+        $photo = Photo::find($id);
+
+        return view('photos.show')->with('photo', $photo);
+    }
+
+    public function destroy($id)
+    {
+        $photo = Photo::find($id);
+
+        if (Storage::delete('/public/albums/' . $photo->album_id . '/' . $photo->photo)) {
+            $photo->delete();
+
+            return redirect('/photoshow')->with('success', '画像を削除しました');
+        }
     }
 }
