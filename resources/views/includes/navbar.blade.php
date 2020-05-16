@@ -42,6 +42,18 @@
                     <a class="dropdown-item" href="/todo/create">Create</a>
                 </div>
             </li>
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle {{ Request::is('/photoshow') ? 'active' : '' }}" href="#"
+                    id="AlbumNavbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true"
+                    aria-expanded="false">
+                    Photo Show
+                </a>
+                <div class="dropdown-menu" aria-labelledby="AlbumNavbarDropdown">
+                    <a class="dropdown-item" href="{{ route('photoshow-index') }}">Home</a>
+                    <div class="dropdown-divider"></div>
+                    <a class="dropdown-item" href="{{ route('album-create') }}">Create</a>
+                </div>
+            </li>
         </ul>
         <ul class="navbar-nav">
             @guest

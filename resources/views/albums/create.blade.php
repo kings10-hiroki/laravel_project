@@ -1,4 +1,4 @@
-@extends('layouts.html')
+@extends('albums.index')
 
 @section('content')
 <h1>Create new album</h1>
