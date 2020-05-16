@@ -54,6 +54,18 @@
                     <a class="dropdown-item" href="{{ route('album-create') }}">Create</a>
                 </div>
             </li>
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle {{ Request::is('/request') ? 'active' : '' }}" href="#"
+                    id="RequestNavbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true"
+                    aria-expanded="false">
+                    Request
+                </a>
+                <div class="dropdown-menu" aria-labelledby="RequestNavbarDropdown">
+                    <a class="dropdown-item" href="/request">Home</a>
+                    <div class="dropdown-divider"></div>
+                    <a class="dropdown-item" href="/request/create">Insert request</a>
+                </div>
+            </li>
         </ul>
         <ul class="navbar-nav">
             @guest

@@ -36,6 +36,8 @@ Route::post('/photoshow/photos/store', 'PhotosController@store')->name('photo-st
 Route::get('/photoshow/photos/{id}', 'PhotosController@show')->name('photo-show');
 Route::delete('photos/{id}', 'PhotosController@destroy')->name('photo-delete');
 
+Route::resource('request', 'RequestController');
+
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
