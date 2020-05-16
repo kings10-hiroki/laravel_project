@@ -25,6 +25,11 @@ Route::resource('todo', 'TodoController');
 
 Route::resource('listings', 'ListingsController');
 
+Route::get('/photoshow', 'AlbumsController@index');
+Route::get('/photoshow/albums', 'AlbumsController@index');
+Route::get('/photoshow/albums/create', 'AlbumsController@create');
+Route::post('/photoshow/albums/store', 'AlbumsController@store')->name('album-store');
+
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
