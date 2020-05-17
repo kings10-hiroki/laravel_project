@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use GuzzleHttp\Client;
 use GuzzleHttp\Exception\RequestException;
+use App\Services\HttpClient;
 
 class RequestController extends Controller
 {
@@ -40,7 +41,7 @@ class RequestController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(Request $request, HttpClient $httpClient)
     {
         $this->validate($request, [
             'text' => 'required',
@@ -83,7 +84,13 @@ class RequestController extends Controller
      */
     public function edit($id)
     {
-        //
+        $client = new Client();
+
+        $response = $client->get('http://192.168.99.100/api/items/' . $id);
+
+        $item = json_decode($response->getBody()->getContents());
+
+        return view('request.edit')->with('item', $item);
     }
 
     /**
@@ -91,11 +98,23 @@ class RequestController extends Controller
      *
      * @param  \Illuminate\Http\Request  $request
      * @param  int  $id
+     * @param  \App\Services\HttpClient $httpClient
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, $id, HttpClient $httpClient)
     {
-        //
+        $this->validate($request, [
+            'text' => 'required',
+            'body' => 'required'
+        ]);
+
+        $response = $httpClient->updateData($id, $request);
+
+        if ($response->getStatusCode() === 200) {
+            return redirect()->to('/request')->with('success', 'アイテムの更新に成功しました');
+        } else {
+            return redirect()->to('/request')->with('error', 'アイテムの更新に失敗しました');
+        }
     }
 
     /**
@@ -104,8 +123,14 @@ class RequestController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy($id, HttpClient $httpClient)
     {
-        //
+        $msg = $httpClient->deleteData($id);
+
+        if ($msg) {
+            return redirect()->to('/request')->with('success', 'アイテムの削除に成功しました');
+        } else {
+            return redirect()->to('/request')->with('error', 'アイテムの削除に失敗しました');
+        }
     }
 }
