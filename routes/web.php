@@ -38,6 +38,15 @@ Route::delete('photos/{id}', 'PhotosController@destroy')->name('photo-delete');
 
 Route::resource('request', 'RequestController');
 
+Route::get('/mail', 'MailsController@index')->name('mail-index');
+Route::get('/mail/create/{id?}/{subject?}', 'MailsController@create')->name('mail-create');
+Route::post('/send', 'MailsController@send')->name('send');
+Route::get('/sent', 'MailsController@sent')->name('sent');
+Route::get('/delete/{id}', 'MailsController@delete')->name('mail-delete');
+Route::get('/read/{id}', 'MailsController@read')->name('read');
+Route::get('/deleted', 'MailsController@deleted')->name('deleted');
+Route::get('/return/{id}', 'MailsController@return')->name('return');
+
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');

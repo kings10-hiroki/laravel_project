@@ -66,6 +66,22 @@
                     <a class="dropdown-item" href="/request/create">Insert request</a>
                 </div>
             </li>
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle {{ Request::is('/request') ? 'active' : '' }}" href="#"
+                    id="MailNavbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true"
+                    aria-expanded="false">
+                    Mail
+                </a>
+                <div class="dropdown-menu" aria-labelledby="MailNavbarDropdown">
+                    <a class="dropdown-item" href="{{ route('mail-index') }}">Inbox</a>
+                    <div class="dropdown-divider"></div>
+                    <a class="dropdown-item" href="{{ route('mail-create') }}">Send Mail</a>
+                    <div class="dropdown-divider"></div>
+                    <a class="dropdown-item" href="{{ route('sent') }}">Sent Mail</a>
+                    <div class="dropdown-divider"></div>
+                    <a class="dropdown-item" href="{{ route('deleted') }}">Deleted Mail</a>
+                </div>
+            </li>
         </ul>
         <ul class="navbar-nav">
             @guest
