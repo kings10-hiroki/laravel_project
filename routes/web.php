@@ -47,6 +47,10 @@ Route::get('/read/{id}', 'MailsController@read')->name('read');
 Route::get('/deleted', 'MailsController@deleted')->name('deleted');
 Route::get('/return/{id}', 'MailsController@return')->name('return');
 
+Route::get('/address', function () {
+    return view('address');
+});
+
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');

@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Http\Request;
+use App\Models\Contact;
 
 /*
 |--------------------------------------------------------------------------
@@ -18,3 +19,31 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 });
 
 Route::resource('items', 'ItemsController');
+
+Route::get('contacts', function () {
+    return Contact::latest()->orderBy('created_at', 'desc')->get();
+});
+
+Route::get('contact/{id}', function ($id) {
+    return Contact::findOrFail($id);
+});
+
+Route::post('contact/store', function (Request $request) {
+    return Contact::create([
+        'name' => $request->input('name'),
+        'email' => $request->input('email'),
+        'phone' => $request->input('phone')
+    ]);
+});
+
+Route::patch('contact/{id}', function (Request $request, $id) {
+    Contact::findOrFail($id)->update([
+        'name' => $request->input('name'),
+        'email' => $request->input('email'),
+        'phone' => $request->input('phone')
+    ]);
+});
+
+Route::delete('contact/{id}', function ($id) {
+    return Contact::destroy($id);
+});

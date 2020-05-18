@@ -82,6 +82,9 @@
                     <a class="dropdown-item" href="{{ route('deleted') }}">Deleted Mail</a>
                 </div>
             </li>
+            <li class="nav-item">
+                <a class="nav-link {{ Request::is('address') ? 'active' : '' }}" href="/address">Address</a>
+            </li>
         </ul>
         <ul class="navbar-nav">
             @guest
